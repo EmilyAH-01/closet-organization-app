@@ -1,0 +1,9 @@
+
+.brand-logo, .menu-text, .tab {
+    color: #1a237e !important;
+    font-family: 'Cutive Mono', monospace;
+}
+
+.brand-logo {
+    font-size: 45px !important;
+}
