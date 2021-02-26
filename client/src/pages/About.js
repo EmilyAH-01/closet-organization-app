@@ -6,7 +6,7 @@ function About() {
         <Container>
             <Row>
                 <Col size="m12">
-                      <h2>About</h2>  
+                      <h2>Shop Responsibly</h2>  
                       <br></br>
                       <h4>In progress!</h4>  
                 </Col>

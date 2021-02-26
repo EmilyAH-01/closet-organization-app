@@ -17,7 +17,7 @@ function Nav() {
           <li className="tab"><a className="active menu-text" href="/closet">My Closet</a></li>
           <li className="tab"><a className="menu-text" href="/additem">Add Item</a></li>
           <li className="tab"><a className="menu-text" href="/myoutfits">My Outfits</a></li>
-          <li className="tab"><a className="menu-text" href="/about">About</a></li>
+          <li className="tab"><a className="menu-text" href="/about">Shop Responsibly</a></li>
         </ul>
       </div>
     </nav>

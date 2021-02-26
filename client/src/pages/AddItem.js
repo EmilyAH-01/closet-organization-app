@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import ImageUpload from "../components/ImageUpload";
 
 function AddItem() {
   // Setting our component's initial state
@@ -69,6 +70,7 @@ function AddItem() {
                 name="source"
                 placeholder="Image link (required)"
               />
+              <ImageUpload />
               <FormBtn
                 disabled={!(formObject.clothingType && formObject.source)}
                 onClick={handleFormSubmit}
