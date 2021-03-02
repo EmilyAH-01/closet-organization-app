@@ -3,6 +3,7 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { Card, CardContent } from "../components/Card";
+import { RegularBtn } from "../components/Button";
 
 function Clothing() {
   // Setting our component's initial state
@@ -48,7 +49,14 @@ function Clothing() {
       <Container>
         <Row>
           <Col size="m12">
-            <h3>My Closet:</h3>
+            <RegularBtn>Add Item</RegularBtn> 
+            <RegularBtn>Create Outfit</RegularBtn> 
+            <RegularBtn>Sort</RegularBtn>   
+            <RegularBtn>Filter</RegularBtn>
+          </Col>
+        </Row>
+        <Row>
+          <Col size="m12">
             <Row>
               {items.length ? (
                 items.map(item => (

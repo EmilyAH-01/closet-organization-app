@@ -2,7 +2,24 @@ import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn } from "../components/Form";
-import ImageUpload from "../components/ImageUpload";
+//import ImageUpload from "../components/ImageUpload";
+import axios from "axios";
+//import {Image, Transformation, CloudinaryContext} from 'cloudinary-react';
+
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import PhotosListReducer from '../reducers/PhotosListReducer';
+import UploadedPhotosReducer from '../reducers/UploadedPhotosReducer';
+import config from '../config/config';
+import PhotoApp from "../components/PhotoApp";
+
+const rootReducer = combineReducers({
+  photos: PhotosListReducer,
+  uploadedPhotos: UploadedPhotosReducer,
+});
+
+const store = createStore(rootReducer);
+const {cloud_name, upload_preset} = config;
 
 function AddItem() {
   // Setting our component's initial state
@@ -29,6 +46,18 @@ function AddItem() {
     setFormObject({...formObject, [name]: value})
   };
 
+  function handleImageUpload(event) {
+    setFormObject({...formObject, source: event.target.files[0]});
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("photo", formObject.source);
+
+    // Upload file to Cloudinary and return the image url, to 
+    // be stored in API.saveClothingItem({...source:   })
+    //s
+    // Might need to store image url in State first
+  }
+
   // On form submission, save input and reload
   function handleFormSubmit(event) {
     event.preventDefault();
@@ -36,8 +65,8 @@ function AddItem() {
       API.saveClothingItem({
         clothingType: formObject.clothingType,
         brand: formObject.brand,
-        colors: formObject.colors,
-        source: formObject.source
+        colors: formObject.colors
+        //source: formObject.source
       })
         .then(res => loadClothing())
         .catch(err => console.log(err));
@@ -49,7 +78,7 @@ function AddItem() {
         <Row>
           <Col size="m12">
             <h3 id="addclosetitem">Add Closet Item:</h3>
-            <form>
+            <form encType="multipart/form-data">
               <Input
                 onChange={handleInputChange}
                 name="clothingType"
@@ -65,12 +94,21 @@ function AddItem() {
                 name="colors"
                 placeholder="Colors (optional)"
               />
-              <TextArea
+              {/* <Input
+                type="file"
+                accept=".png, .jpg, jpeg"
+                name="source"
+                onChange={handleImageUpload}
+              /> */}
+              {/* <TextArea
                 onChange={handleInputChange}
                 name="source"
                 placeholder="Image link (required)"
-              />
-              <ImageUpload />
+              /> */}
+              {/* <ImageUpload /> */}
+              <Provider store={store}>
+                  <PhotoApp cloudName={cloud_name} uploadPreset={upload_preset}/>
+              </Provider>
               <FormBtn
                 disabled={!(formObject.clothingType && formObject.source)}
                 onClick={handleFormSubmit}
@@ -80,6 +118,8 @@ function AddItem() {
             </form>
           </Col>
         </Row>
+
+        {/* {children} */}
 
       </Container>
     );

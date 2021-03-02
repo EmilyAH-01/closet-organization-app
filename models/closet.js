@@ -19,7 +19,7 @@ const closetSchema = new Schema({
   },
   sustainable: { type: Boolean, default: false },
   ethical: { type: Boolean, default: false },
-  source: { type: String, required: true },
+  source: { type: String },
   date: { type: Date, default: Date.now }
 });
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import API from "../utils/API";
-import DeleteBtn from "../components/DeleteBtn";
+import { DeleteBtn } from "../components/Button";
 import { Card } from "../components/Card";
 
 function Detail(props) {

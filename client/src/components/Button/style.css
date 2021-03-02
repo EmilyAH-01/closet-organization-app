@@ -2,3 +2,8 @@
   float: right;
   background-color: #e74944 !important;
 }
+
+.btn {
+  margin-top: 30px;
+  margin-right: 20px;
+}

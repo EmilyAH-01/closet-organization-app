@@ -10,6 +10,28 @@ import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 
+// import { createStore, combineReducers } from 'redux';
+// import { Provider } from 'react-redux';
+// import PhotosListReducer from './reducers/PhotosListReducer';
+// import UploadedPhotosReducer from './reducers/UploadedPhotosReducer';
+// import config from './config/config';
+// import PhotoApp from "./components/PhotoApp";
+
+// const rootReducer = combineReducers({
+//     photos: PhotosListReducer,
+//     uploadedPhotos: UploadedPhotosReducer,
+// });
+
+// const store = createStore(rootReducer);
+// const {cloud_name, upload_preset} = config;
+
+// render(
+//     <Provider store={store}>
+//         <PhotoApp cloudName={cloud_name} uploadPreset={upload_preset}/>
+//     </Provider>,
+//     //document.getElementById('root')
+// );
+
 function App() {
   return (
     <Router>
@@ -20,7 +42,11 @@ function App() {
             <Clothing />
           </Route>
           <Route exact path="/additem">
-            <AddItem />
+            <AddItem>
+              {/* <Provider store={store}>
+                  <PhotoApp cloudName={cloud_name} uploadPreset={upload_preset}/>
+              </Provider> */}
+            </AddItem>
           </Route>
           <Route exact path="/myoutfits">
             <MyOutfits />

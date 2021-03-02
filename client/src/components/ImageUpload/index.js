@@ -1,35 +1,19 @@
-import React, { Component } from "react";
-import axios from "axios";
+// Source: https://dev.to/yosraskhiri/how-to-upload-an-image-using-mern-stack-1j95
 
-class ImageUpload extends Component {
-    state = {
-        selectedFile: null
-    }
+// import React, { useState } from "react";
+// import axios from "axios";
 
-    fileSelectedHandler = event => {
-        console.log(event.target.files[0]);
-        //this.setState({ selectedFile: event.target.files[0] });
-    }
+// const ImageUpload = () => {
+//     const [newImage, setNewImage] = useState({
+//         clothingType: "",
 
-    // fileUploadHandler = () => {
-    //     const fd = new FormData();
-    //     fd.append("image", this.state.selectedFile, this.state.selectedFile.name);
+//     });
 
-    //     axios
-    //         .post("/upload", fd)
-    //         .then (res => {
-    //             console.log(res);
-    //         });
-    // }
+//     const handleSubmit = (event) => {
+//         event.preventDefault();
+//         const formData = newFormData();
+//         formData.append("image", newImage.)
+//     }
+// }
 
-    render() {
-        return (
-            <div>
-                <input type="file" onChange={this.fileSelectedHandler} />
-                {/* <button onClick={this.fileUploadHandler}>Upload</button> */}
-            </div>
-        );
-    }
-}
-
-export default ImageUpload;
+// export default ImageUpload;
