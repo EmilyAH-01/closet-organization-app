@@ -7,7 +7,6 @@ import { photosFetched } from '../actions';
 import PhotoListContainer from './PhotoList';
 import PhotosUploaderContainer from './PhotosUploader';
 import { fetchPhotos } from '../utils/CloudinaryService';
-import './PhotoApp.css';
 
 class App extends Component {
     componentDidMount() {

@@ -46,17 +46,17 @@ function AddItem() {
     setFormObject({...formObject, [name]: value})
   };
 
-  function handleImageUpload(event) {
-    setFormObject({...formObject, source: event.target.files[0]});
-    event.preventDefault();
-    const formData = new FormData();
-    formData.append("photo", formObject.source);
+  // function handleImageUpload(event) {
+  //   setFormObject({...formObject, source: event.target.files[0]});
+  //   event.preventDefault();
+  //   const formData = new FormData();
+  //   formData.append("photo", formObject.source);
 
-    // Upload file to Cloudinary and return the image url, to 
-    // be stored in API.saveClothingItem({...source:   })
-    //s
-    // Might need to store image url in State first
-  }
+  //   // Upload file to Cloudinary and return the image url, to 
+  //   // be stored in API.saveClothingItem({...source:   })
+  //   //s
+  //   // Might need to store image url in State first
+  // }
 
   // On form submission, save input and reload
   function handleFormSubmit(event) {
@@ -65,8 +65,8 @@ function AddItem() {
       API.saveClothingItem({
         clothingType: formObject.clothingType,
         brand: formObject.brand,
-        colors: formObject.colors
-        //source: formObject.source
+        colors: formObject.colors,
+        source: formObject.source
       })
         .then(res => loadClothing())
         .catch(err => console.log(err));
@@ -100,11 +100,11 @@ function AddItem() {
                 name="source"
                 onChange={handleImageUpload}
               /> */}
-              {/* <TextArea
+              <TextArea
                 onChange={handleInputChange}
                 name="source"
                 placeholder="Image link (required)"
-              /> */}
+              />
               {/* <ImageUpload /> */}
               <Provider store={store}>
                   <PhotoApp cloudName={cloud_name} uploadPreset={upload_preset}/>
@@ -118,8 +118,6 @@ function AddItem() {
             </form>
           </Col>
         </Row>
-
-        {/* {children} */}
 
       </Container>
     );

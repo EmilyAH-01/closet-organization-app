@@ -1,75 +1,96 @@
-import React from "react";
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Clothing from "./pages/Clothing";
 import AddItem from "./pages/AddItem";
 import MyOutfits from "./pages/MyOutfits";
 import About from "./pages/About";
-import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 
-// import { createStore, combineReducers } from 'redux';
-// import { Provider } from 'react-redux';
-// import PhotosListReducer from './reducers/PhotosListReducer';
-// import UploadedPhotosReducer from './reducers/UploadedPhotosReducer';
-// import config from './config/config';
-// import PhotoApp from "./components/PhotoApp";
+import Login from './components/login-form';
+import axios from "axios";
 
-// const rootReducer = combineReducers({
-//     photos: PhotosListReducer,
-//     uploadedPhotos: UploadedPhotosReducer,
-// });
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      loggedIn: true,
+      username: null
+    }
 
-// const store = createStore(rootReducer);
-// const {cloud_name, upload_preset} = config;
+    this.getUser = this.getUser.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this)
+    this.updateUser = this.updateUser.bind(this)
+  }
 
-// render(
-//     <Provider store={store}>
-//         <PhotoApp cloudName={cloud_name} uploadPreset={upload_preset}/>
-//     </Provider>,
-//     //document.getElementById('root')
-// );
+  componentDidMount() {
+    this.getUser()
+  }
 
-function App() {
-  return (
-    <Router>
-      <div>
-        <Nav />
-        <Switch>
-          <Route exact path={["/", "/closet"]}>
-            <Clothing />
-          </Route>
-          <Route exact path="/additem">
-            <AddItem>
-              {/* <Provider store={store}>
-                  <PhotoApp cloudName={cloud_name} uploadPreset={upload_preset}/>
-              </Provider> */}
-            </AddItem>
-          </Route>
-          <Route exact path="/myoutfits">
-            <MyOutfits />
-          </Route>
-          <Route exact path="/about">
-            <About />
-          </Route>
-          <Route exact path="/login">
-            <Login />
-          </Route>
-          <Route exact path="/signup">
-            <Signup />
-          </Route>
-          <Route exact path="/closet/:id">
-            <Detail />
-          </Route>
-          <Route>
-            <NoMatch />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
+  updateUser (userObject) {
+    this.setState(userObject)
+  }
+
+  getUser() {
+    axios.get('/user/').then(response => {
+      console.log('Get user response: ')
+      console.log(response.data)
+      if (response.data.user) {
+        console.log('Get User: There is a user saved in the server session: ')
+
+        this.setState({
+          loggedIn: true,
+          username: response.data.user.username
+        })
+      } else {
+        console.log('Get user: no user');
+        this.setState({
+          loggedIn: false,
+          username: null
+        })
+      }
+    })
+  }
+
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <Route
+            exact path={["/", "/signup"]}
+            render={() =>
+              <Signup  >
+                <Login
+                  updateUser={this.updateUser}
+                />
+              </Signup>}
+          />
+          
+            <div>
+              <Nav />
+              <Route
+                exact path="/closet"
+                component={Clothing} 
+              />
+              <Route exact path="/additem">
+                <AddItem />
+              </Route>
+              <Route exact path="/myoutfits">
+                <MyOutfits />
+              </Route>
+              <Route exact path="/about">
+                <About />
+              </Route>
+            </div>
+          
+        </div>
+      </Router>
+
+
+    );
+  }
 }
 
 export default App;

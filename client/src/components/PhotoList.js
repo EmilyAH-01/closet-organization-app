@@ -9,6 +9,8 @@ import Photo from './Photo';
 //import Introduction from './Introduction';
 import {CloudinaryContext} from 'cloudinary-react';
 
+//const urlStart = "https://res.cloudinary.com/emilyah/image/upload/";
+
 class PhotoList extends Component {
     render() {
         return (
@@ -37,10 +39,13 @@ class PhotoList extends Component {
                     )}
                     {this.props.photos.map(photo => {
                         return (
-                            <Photo
+                            <div>
+                                <Photo
                                 key={photo.public_id}
                                 publicId={photo.public_id}
-                            />
+                                />
+                                <p>{"https://res.cloudinary.com/emilyah/image/upload/" + photo.public_id}</p>
+                            </div>
                         );
                     })}
                 </div>

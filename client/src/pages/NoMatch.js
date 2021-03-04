@@ -6,12 +6,7 @@ function NoMatch() {
     <Container>
       <Row>
         <Col size="m12">
-          <h1>404 Page Not Found</h1>
-          <h1>
-            <span role="img" aria-label="Face With Rolling Eyes Emoji">
-              🙄
-            </span>
-          </h1>
+          <h3>404 Page Not Found</h3>
         </Col>
       </Row>
     </Container>

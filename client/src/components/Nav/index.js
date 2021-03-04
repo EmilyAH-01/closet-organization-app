@@ -1,27 +1,89 @@
-import React from "react";
+import React, { Component } from "react";
 import "./style.css";
 
-function Nav() {
-  return (
-    <nav className="nav-extended blue lighten-5">
-      <div className="nav-wrapper">
-        <a href="/" className="brand-logo center">armoire</a>
-        <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
-        <ul id="nav-mobile" className="right hide-on-med-and-down">
-          <li><a href="/login" className="menu-text">Log In</a></li>
-          <li><a href="/signup" className="menu-text">Sign Up</a></li>
-        </ul>
-      </div>
-      <div className="nav-content">
-        <ul className="tabs tabs-transparent">
-          <li className="tab"><a className="active menu-text" href="/closet">My Closet</a></li>
-          <li className="tab"><a className="menu-text" href="/additem">Add Item</a></li>
-          <li className="tab"><a className="menu-text" href="/myoutfits">My Outfits</a></li>
-          <li className="tab"><a className="menu-text" href="/about">Shop Responsibly</a></li>
-        </ul>
-      </div>
-    </nav>
-  );
+import { Redirect } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
+import axios from 'axios';
+
+class Nav extends Component {
+  constructor() {
+    super()
+    this.logout = this.logout.bind(this)
+  }
+
+  logout(event) {
+    event.preventDefault()
+    console.log('logging out')
+    axios.post('/user/logout').then(response => {
+      console.log(response.data)
+      if (response.status === 200) {
+        this.props.updateUser({
+          loggedIn: false,
+          username: null
+        })
+      }
+    }).catch(error => {
+      console.log('Logout error')
+    })
+  }
+
+  render() {
+    const loggedIn = this.props.loggedIn;
+    console.log('navbar render, props: ')
+    console.log(this.props);
+    
+    return (
+      <nav className="nav-extended blue lighten-5">
+        {loggedIn ? (
+          <section>
+            <div className="nav-wrapper">
+              {/* <a href="nav-mobile" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a> */}
+              {/* <ul id="nav-mobile" className="right hide-on-med-and-down"></ul> */}
+              <Link to="/"><span className="brand-logo center">armoire</span></Link>
+              <ul id="nav-mobile" className="right">
+                <li>
+                  <Link to="/signup" className="menu-text" onClick={this.logout}>
+                    Log Out
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="nav-content">
+              <ul className="tabs tabs-transparent">
+                <li className="tab"><Link className="menu-text" to="/closet">My Closet</Link></li>
+                <li className="tab"><Link className="menu-text" to="/additem">Add Item</Link></li>
+                <li className="tab"><Link className="menu-text" to="/myoutfits">My Outfits</Link></li>
+                <li className="tab"><Link className="menu-text" to="/about">Shop Responsibly</Link></li>
+              </ul>
+            </div>
+          </section>
+        ) : (
+          <section>
+            <div className="nav-wrapper">
+              {/* <a href="nav-mobile" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a> */}
+              {/* <ul id="nav-mobile" className="right hide-on-med-and-down"></ul> */}
+              <Link to="/"><span className="brand-logo center">armoire</span></Link>
+              <ul id="nav-mobile" className="right">
+                <li>
+                  <Link to="/signup" className="menu-text" onClick={this.logout}>
+                    Log Out
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="nav-content">
+              <ul className="tabs tabs-transparent">
+                <li className="tab"><Link className="menu-text" to="/closet">My Closet</Link></li>
+                <li className="tab"><Link className="menu-text" to="/additem">Add Item</Link></li>
+                <li className="tab"><Link className="menu-text" to="/myoutfits">My Outfits</Link></li>
+                <li className="tab"><Link className="menu-text" to="/about">Shop Responsibly</Link></li>
+              </ul>
+            </div>
+          </section>
+        )}
+      </nav>
+    );
+  }
 }
 
 export default Nav;

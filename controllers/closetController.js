@@ -15,19 +15,6 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  // create: function(req,res) {
-  //   console.log(req.body);
-  //   db.Item
-  //     //.create(req.body)
-  //     .create({
-  //       clothingType: req.body.clothingType,
-  //       brand: req.body.brand,
-  //       colors: req.body.colors,
-  //       source: req.file.url
-  //     })
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // },
   create: function(req, res) {
     db.Item
       .create(req.body)
