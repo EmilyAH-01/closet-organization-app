@@ -1,9 +1,9 @@
 .delete-btn {
-  float: right;
   background-color: #e74944 !important;
 }
 
-/* .btn {
+.btn {
+  font-family: 'Cutive Mono', monospace;
   margin-top: 30px;
   margin-right: 20px;
-} */
+}

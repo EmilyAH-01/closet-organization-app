@@ -1,0 +1,12 @@
+.addSection {
+    background-image: url("../../assets/positive.png");
+    padding-bottom: 300px;
+    margin-top: 2px;
+}
+
+.closetDiv {
+    margin-top: 15px;
+    padding: 20px;
+    background-color: white;
+    font-family: 'Cutive Mono', monospace;
+}

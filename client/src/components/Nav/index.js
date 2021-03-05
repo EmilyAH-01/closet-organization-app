@@ -52,7 +52,7 @@ class Nav extends Component {
               <ul className="tabs tabs-transparent">
                 <li className="tab"><Link className="menu-text" to="/closet">My Closet</Link></li>
                 <li className="tab"><Link className="menu-text" to="/additem">Add Item</Link></li>
-                <li className="tab"><Link className="menu-text" to="/myoutfits">My Outfits</Link></li>
+                {/* <li className="tab"><Link className="menu-text" to="/myoutfits">My Outfits</Link></li> */}
                 <li className="tab"><Link className="menu-text" to="/about">Shop Responsibly</Link></li>
               </ul>
             </div>

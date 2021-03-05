@@ -6,7 +6,6 @@ import MyOutfits from "./pages/MyOutfits";
 import About from "./pages/About";
 import Signup from "./pages/Signup";
 import Detail from "./pages/Detail";
-import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 
 import Login from './components/login-form';
@@ -74,6 +73,9 @@ class App extends Component {
                 exact path="/closet"
                 component={Clothing} 
               />
+              <Route exact path="/closet/:id">
+                <Detail />
+              </Route>
               <Route exact path="/additem">
                 <AddItem />
               </Route>

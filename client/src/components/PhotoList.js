@@ -5,21 +5,14 @@ import PropTypes from 'prop-types';
 import { openUploadWidget } from '../utils/CloudinaryService';
 import { photosUploaded } from '../actions';
 import Photo from './Photo';
-//import FacebookImage from './FacebookImage';
-//import Introduction from './Introduction';
 import {CloudinaryContext} from 'cloudinary-react';
 
-//const urlStart = "https://res.cloudinary.com/emilyah/image/upload/";
+
 
 class PhotoList extends Component {
     render() {
         return (
             <div className="photoList">
-                {/* <FacebookImage
-                    publicId1="billclinton"
-                    publicId2="officialchucknorrispage"
-                /> */}
-                {/* <Introduction /> */}
                 <div className="actions">
                     <a
                         className="upload_link"
@@ -34,6 +27,11 @@ class PhotoList extends Component {
                     </NavLink>
                 </div> */}
                 <div className="photos">
+                        {/* {<Photo
+                            key={this.props.photos[0].public_id}
+                            publicId={this.props.photos[0].public_id}
+                        />} */}
+                        
                     {this.props.photos.length === 0 && (
                         <p>No photos were added yet.</p>
                     )}
@@ -49,17 +47,6 @@ class PhotoList extends Component {
                         );
                     })}
                 </div>
-                {/* <div className="note">
-                    Take a look at our documentation of{' '}
-                    <a
-                        href="https://cloudinary.com/documentation/image_transformations"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Image Transformations
-                    </a>{' '}
-                    for a full list of supported transformations.
-                </div> */}
             </div>
         );
     }

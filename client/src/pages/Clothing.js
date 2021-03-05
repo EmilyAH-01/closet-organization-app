@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { Card, CardContent } from "../components/Card";
 import { RegularBtn } from "../components/Button";
+import "./styling/closet.css";
 
 function Clothing() {
   // Setting our component's initial state
@@ -46,39 +47,44 @@ function Clothing() {
   };
 
     return (
+      <section className="mainSection">
       <Container>
         <Row>
-          <Col size="m12">
-            <RegularBtn>Add Item</RegularBtn> 
-            <RegularBtn>Create Outfit</RegularBtn> 
+          <Col size="m2">
+            {/* <RegularBtn> Item</RegularBtn>  */}
+            {/* <RegularBtn>Create Outfit</RegularBtn>  */}
             <RegularBtn>Sort</RegularBtn>   
             <RegularBtn>Filter</RegularBtn>
           </Col>
-        </Row>
-        <Row>
-          <Col size="m12">
+          <Col size="m10">
             <Row>
-              {items.length ? (
-                items.map(item => (
-                  <Col key={item._id} size="s6 m3">
-                    <Card src={item.source}>
-                      <CardContent>
-                        <Link to={"/closet/" + item._id}>
-                          <strong>
-                            {item.clothingType} by {item.brand}
-                          </strong>
-                        </Link>
-                      </CardContent>
-                    </Card>
-                  </Col>
-                ))
-              ) : (
-                <h3>No Results to Display</h3>
-              )}
+              <Col size="s12">
+                <br/>
+                <Row>
+                  {items.length ? (
+                    items.map(item => (
+                      <Col key={item._id} size="s6 m4">
+                        <Card src={item.source}>
+                          <CardContent>
+                            <Link to={"/closet/" + item._id}>
+                              <strong>
+                                {item.brand} {item.clothingType} 
+                              </strong>
+                            </Link>
+                          </CardContent>
+                        </Card>
+                      </Col>
+                    ))
+                  ) : (
+                    <h3>No Results to Display</h3>
+                  )}
+                </Row>
+              </Col>
             </Row>
           </Col>
         </Row>
       </Container>
+      </section>
     );
   }
 

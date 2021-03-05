@@ -4,6 +4,7 @@ import { Col, Row, Container } from "../components/Grid";
 import API from "../utils/API";
 import { DeleteBtn } from "../components/Button";
 import { Card } from "../components/Card";
+import "./styling/closet.css";
 
 function Detail(props) {
   const [item, setClothing] = useState({})
@@ -25,28 +26,28 @@ function Detail(props) {
   }
 
   return (
+    <section className="mainSection">
       <Container>
         <Row>
           <Col size="m6">
             <div style={{padding:10}}>
-              <h3>{item.clothingType} by {item.brand}</h3>
               <Card src={item.source} />
             </div>
           </Col>
           <Col size="m6">
             <div style={{padding:10}}>
               <article>
-                <h3>Tags</h3>
-                <p>
-                  {item.colors}
-                </p>
+                <h5>Clothing Type: {item.clothingType}</h5>
+                <h5>Brand: {item.brand}</h5>
+                <h5>Ethical? {item.ethical}</h5>
               </article>
               <DeleteBtn onClick={() => deleteClothingItem(item._id)} />
-              <Link to="/">← Back to Closet</Link>
+              {/* <Link to="/closet">Back to Closet</Link> */}
             </div>
           </Col>
         </Row>
       </Container>
+      </section>
     );
   }
 

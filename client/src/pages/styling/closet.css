@@ -1,0 +1,10 @@
+.mainSection {
+    background-image: url("../../assets/geometric-leaves.png");
+    padding-bottom: 300px;
+    margin-top: 2px;
+    font-family: 'Cutive Mono', monospace;
+}
+
+h4 {
+    font-weight: bold;
+}
